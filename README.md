@@ -39,4 +39,4 @@ if __name__ == "__main__":
         print("\nAI 回答：")
         print(answer)
     else:
-        print("請輸入內容！"
+        print("請輸入內容！")
