@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>🎓 我的 AI 助手</h1>
+    <!-- 注意：這裡 action="/" method="POST" 必須完全對齊 -->
     <form action="/" method="POST">
         <input type="text" name="question" placeholder="請輸入你的問題">
         <br><br>
@@ -21,6 +22,7 @@
             <option value="英文">英文</option>
         </select>
         <br><br>
+        <!-- 送出按鈕必須是 submit -->
         <button type="submit">送出問題</button>
     </form>
 
