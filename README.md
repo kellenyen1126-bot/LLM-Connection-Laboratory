@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>🎓 我的 AI 助手</h1>
-    <!-- 注意：這裡 action="/" method="POST" 必須完全對齊 -->
+    <!-- 表單 action="/" method="POST" 必須完全對齊 -->
     <form action="/" method="POST">
         <input type="text" name="question" placeholder="請輸入你的問題">
         <br><br>
@@ -36,6 +36,7 @@ from flask import Flask, render_template, request
 import requests, os
 from dotenv import load_dotenv
 
+# 載入 API key
 load_dotenv()
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -74,3 +75,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
