@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>🎓 我的 AI 助手</h1>
-    <form method="POST">
+    <form action="/" method="POST">
         <input type="text" name="question" placeholder="請輸入你的問題">
         <br><br>
         <label>選擇難度：</label>
@@ -21,7 +21,6 @@
             <option value="英文">英文</option>
         </select>
         <br><br>
-        <!-- 送出按鈕 -->
         <button type="submit">送出問題</button>
     </form>
 
@@ -31,12 +30,10 @@
     {% endif %}
 </body>
 </html>
-
 from flask import Flask, render_template, request
 import requests, os
 from dotenv import load_dotenv
 
-# 載入 API key
 load_dotenv()
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
