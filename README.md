@@ -9,6 +9,9 @@ API_KEY = os.getenv("OPENROUTER_API_KEY")
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 def ask_ai(question, difficulty="初級", language="中文"):
+    if not API_KEY:
+        return "❌ 沒有找到 API key，請確認 .env 檔案是否正確設定。"
+
     headers = {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
@@ -21,12 +24,17 @@ def ask_ai(question, difficulty="初級", language="中文"):
         ]
     }
 
-    response = requests.post(API_URL, headers=headers, json=data)
-    if response.status_code == 200:
+    try:
+        response = requests.post(API_URL, headers=headers, json=data)
+        response.raise_for_status()  # 如果有錯誤會直接丟出例外
         result = response.json()
-        return result["choices"][0]["message"]["content"]
-    else:
-        return f"API 錯誤：{response.status_code}"
+        # 檢查回傳結構
+        if "choices" in result and len(result["choices"]) > 0:
+            return result["choices"][0]["message"]["content"]
+        else:
+            return f"⚠️ API 回傳格式不符合預期：{result}"
+    except Exception as e:
+        return f"❌ 連線或解析失敗：{e}"
 
 if __name__ == "__main__":
     print("🎓 我的 AI 助手")
