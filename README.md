@@ -4,73 +4,15 @@
 <meta charset="UTF-8">
 <title>我的 AI 助手</title>
 <style>
-    body {
-        font-family: -apple-system, "Microsoft JhengHei", sans-serif;
-        background: #f7f7f8;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-    header {
-        background: #ffffff;
-        padding: 16px;
-        border-bottom: 1px solid #e5e5e5;
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;
-    }
-    #chat {
-        flex: 1;
-        overflow-y: auto;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    .bubble {
-        max-width: 70%;
-        padding: 10px 14px;
-        border-radius: 16px;
-        line-height: 1.4;
-        white-space: pre-wrap;
-    }
-    .user {
-        align-self: flex-end;
-        background: #2563eb;
-        color: white;
-        border-bottom-right-radius: 4px;
-    }
-    .ai {
-        align-self: flex-start;
-        background: #ffffff;
-        border: 1px solid #e5e5e5;
-        border-bottom-left-radius: 4px;
-    }
-    footer {
-        display: flex;
-        padding: 12px;
-        background: #ffffff;
-        border-top: 1px solid #e5e5e5;
-        gap: 8px;
-    }
-    #userInput {
-        flex: 1;
-        padding: 10px 14px;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        font-size: 15px;
-        outline: none;
-    }
-    #sendBtn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        background: #2563eb;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-    }
+    body { font-family: -apple-system, "Microsoft JhengHei", sans-serif; background: #f7f7f8; margin: 0; display: flex; flex-direction: column; height: 100vh; }
+    header { background: #ffffff; padding: 16px; border-bottom: 1px solid #e5e5e5; text-align: center; font-weight: bold; font-size: 18px; }
+    #chat { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .bubble { max-width: 70%; padding: 10px 14px; border-radius: 16px; line-height: 1.4; white-space: pre-wrap; }
+    .user { align-self: flex-end; background: #2563eb; color: white; border-bottom-right-radius: 4px; }
+    .ai { align-self: flex-start; background: #ffffff; border: 1px solid #e5e5e5; border-bottom-left-radius: 4px; }
+    footer { display: flex; padding: 12px; background: #ffffff; border-top: 1px solid #e5e5e5; gap: 8px; }
+    #userInput { flex: 1; padding: 10px 14px; border: 1px solid #ccc; border-radius: 20px; font-size: 15px; outline: none; }
+    #sendBtn { padding: 10px 20px; border: none; border-radius: 20px; background: #2563eb; color: white; font-size: 15px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -83,7 +25,8 @@
 </footer>
 
 <script>
-    const API_KEY = "sk-把這裡換成你自己的真實金鑰"; // ⚠️ 這一行必須換成你自己的 key
+    const API_KEY = "PASTE_YOUR_REAL_KEY_HERE";
+
     const chatBox = document.getElementById("chat");
     const input = document.getElementById("userInput");
 
