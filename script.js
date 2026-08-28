@@ -1,85 +1,78 @@
+const API_KEY = "YOUR_GEMINI_API_KEY";
+
 const askButton = document.getElementById("askButton");
 const questionInput = document.getElementById("question");
 const difficultyInput = document.getElementById("difficulty");
 const lengthInput = document.getElementById("length");
-
-const responseBox = document.getElementById("response");
 const loading = document.getElementById("loading");
+const responseBox = document.getElementById("response");
 
+askButton.addEventListener("click", askAI);
 
-askButton.addEventListener("click", async function () {
+async function askAI(){
 
     const question = questionInput.value.trim();
-    const difficulty = difficultyInput.value;
-    const length = lengthInput.value;
 
-    // Check for empty input
-    if (question === "") {
-        responseBox.textContent =
-            "Please enter a Python question first.";
+    if(question === ""){
+        responseBox.innerHTML = "Please enter a question.";
         return;
     }
 
-    // Disable button while waiting
+    loading.style.display = "block";
+    responseBox.innerHTML = "";
     askButton.disabled = true;
 
-    loading.style.display = "block";
+    const prompt = `
+You are an AI Python Tutor.
 
-    responseBox.textContent = "";
+Difficulty: ${difficultyInput.value}
+Response Length: ${lengthInput.value}
 
-    try {
+Teach Python only.
 
-        const response = await fetch("/api/ask", {
+Student Question:
+${question}
+`;
 
-            method: "POST",
+    try{
 
-            headers: {
-                "Content-Type": "application/json"
+        const url =
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+
+        const res = await fetch(url,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
             },
-
-            body: JSON.stringify({
-
-                question: question,
-                difficulty: difficulty,
-                length: length
-
+            body:JSON.stringify({
+                contents:[
+                    {
+                        parts:[
+                            {text:prompt}
+                        ]
+                    }
+                ]
             })
-
         });
 
+        const data = await res.json();
 
-        if (!response.ok) {
-            throw new Error("API request failed.");
+        if(data.error){
+            throw new Error(data.error.message);
         }
 
+        const answer =
+        data.candidates[0].content.parts[0].text;
 
-        const data = await response.json();
+        responseBox.innerHTML = answer;
 
+    }catch(error){
 
-        if (data.answer) {
-
-            responseBox.textContent = data.answer;
-
-        } else {
-
-            responseBox.textContent =
-                "The AI did not return an answer.";
-
-        }
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        responseBox.textContent =
-            "Sorry, something went wrong while contacting the AI.";
+        responseBox.innerHTML =
+        "❌ Error: " + error.message;
 
     }
 
-
     loading.style.display = "none";
-
     askButton.disabled = false;
-
-});
+}
