@@ -25,7 +25,7 @@
 </footer>
 
 <script>
-    const API_KEY = "PASTE_YOUR_REAL_KEY_HERE";
+    const API_KEY = "PASTE_HERE";
 
     const chatBox = document.getElementById("chat");
     const input = document.getElementById("userInput");
@@ -68,6 +68,10 @@
             loadingBubble.innerText = "發生錯誤：" + err;
         }
     }
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") sendMessage();
+    });
 </script>
 </body>
 </html>
