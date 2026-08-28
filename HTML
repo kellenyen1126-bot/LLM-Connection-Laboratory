@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Python Tutor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🐍 AI Python Tutor</h1>
+
+            <p>
+                Ask questions about Python and get help from an AI tutor.
+            </p>
+        </header>
+
+        <div class="warning">
+            ⚠️ AI responses may contain mistakes.
+            Do not enter passwords, addresses, ID numbers,
+            or other private information.
+        </div>
+
+        <section class="settings">
+
+            <label for="difficulty">
+                Difficulty
+            </label>
+
+            <select id="difficulty">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+
+
+            <label for="length">
+                Response Length
+            </label>
+
+            <select id="length">
+                <option value="Short">Short</option>
+                <option value="Detailed">Detailed</option>
+            </select>
+
+        </section>
+
+        <section class="question-section">
+
+            <label for="question">
+                Your Python Question
+            </label>
+
+            <textarea
+                id="question"
+                placeholder="Example: What is a for loop in Python?"
+            ></textarea>
+
+            <button id="askButton">
+                Ask AI Tutor
+            </button>
+
+        </section>
+
+        <section class="response-section">
+
+            <h2>🤖 AI Tutor Response</h2>
+
+            <div id="loading">
+                AI Tutor is thinking...
+            </div>
+
+            <div id="response">
+                Your answer will appear here.
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
