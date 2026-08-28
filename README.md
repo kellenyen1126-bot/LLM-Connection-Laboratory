@@ -71,44 +71,35 @@
         font-size: 15px;
         cursor: pointer;
     }
-    #sendBtn:hover { background: #1d4ed8; }
-    #sendBtn:disabled { background: #999; cursor: not-allowed; }
 </style>
 </head>
 <body>
 
 <header>🎓 我的 AI 助手</header>
-
 <div id="chat"></div>
-
 <footer>
     <input type="text" id="userInput" placeholder="請輸入訊息...">
     <button id="sendBtn" onclick="sendMessage()">送出</button>
 </footer>
 
 <script>
-    const API_KEY = "YOUR_OPENAI_API_KEY_HERE"; // ⚠️ see warning below
+    const API_KEY = "sk-把這裡換成你自己的真實金鑰"; // ⚠️ 這一行必須換成你自己的 key
     const chatBox = document.getElementById("chat");
     const input = document.getElementById("userInput");
-    const sendBtn = document.getElementById("sendBtn");
 
     function addBubble(text, sender) {
         const div = document.createElement("div");
         div.className = "bubble " + sender;
         div.innerText = text;
         chatBox.appendChild(div);
-        chatBox.scrollTop = chatBox.scrollHeight;
         return div;
     }
 
     async function sendMessage() {
         const message = input.value.trim();
         if (!message) return;
-
         addBubble(message, "user");
         input.value = "";
-        sendBtn.disabled = true;
-
         const loadingBubble = addBubble("思考中...", "ai");
 
         try {
@@ -123,20 +114,17 @@
                     messages: [{ role: "user", content: message }]
                 })
             });
-
             const data = await response.json();
-            loadingBubble.innerText = data.choices[0].message.content;
+
+            if (data.error) {
+                loadingBubble.innerText = "錯誤：" + data.error.message;
+            } else {
+                loadingBubble.innerText = data.choices[0].message.content;
+            }
         } catch (err) {
             loadingBubble.innerText = "發生錯誤：" + err;
-        } finally {
-            sendBtn.disabled = false;
         }
     }
-
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") sendMessage();
-    });
 </script>
-
 </body>
 </html>
