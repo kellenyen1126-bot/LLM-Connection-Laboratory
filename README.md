@@ -5,38 +5,39 @@
 <title>我的 AI 助手</title>
 <style>
     * { box-sizing: border-box; }
-    body { font-family: -apple-system, "Microsoft JhengHei", sans-serif; margin: 0; display: flex; height: 100vh; background: #343541; color: #ececf1; }
-    #sidebar { width: 260px; background: #202123; padding: 16px; display: flex; flex-direction: column; }
-    #sidebar h2 { font-size: 16px; margin: 0 0 20px 0; }
-    #newChatBtn { background: transparent; border: 1px solid #565869; color: #ececf1; padding: 10px; border-radius: 6px; cursor: pointer; text-align: left; }
-    #newChatBtn:hover { background: #2a2b32; }
-    #main { flex: 1; display: flex; flex-direction: column; }
-    #chat { flex: 1; overflow-y: auto; padding: 30px 15%; display: flex; flex-direction: column; gap: 20px; }
+    body { font-family: -apple-system, "Microsoft JhengHei", sans-serif; margin: 0; display: flex; height: 100vh; background: #212121; color: #ececec; }
+    #sidebar { width: 260px; background: #171717; padding: 12px 8px; display: flex; flex-direction: column; }
+    .sidebar-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #ececec; font-size: 14px; }
+    .sidebar-item:hover { background: #2a2a2a; }
+    #main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #chat { width: 100%; max-width: 700px; flex: 1; overflow-y: auto; padding: 30px 0; display: flex; flex-direction: column; gap: 20px; }
     .row { display: flex; gap: 14px; }
-    .avatar { width: 30px; height: 30px; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
+    .avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; }
     .row.user .avatar { background: #5436da; color: white; }
     .row.ai .avatar { background: #19c37d; color: white; }
     .text { line-height: 1.6; white-space: pre-wrap; padding-top: 4px; }
-    footer { padding: 20px 15%; }
-    #inputWrap { display: flex; background: #40414f; border-radius: 12px; padding: 8px; border: 1px solid #565869; }
-    #userInput { flex: 1; background: transparent; border: none; outline: none; color: #ececf1; padding: 8px 12px; font-size: 15px; }
-    #sendBtn { background: #19c37d; border: none; color: white; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+    #welcome { font-size: 26px; text-align: center; color: #ececec; margin-bottom: 20px; }
+    footer { width: 100%; max-width: 700px; padding: 20px 0; }
+    #inputWrap { display: flex; align-items: center; background: #2f2f2f; border-radius: 26px; padding: 10px 10px 10px 20px; }
+    #userInput { flex: 1; background: transparent; border: none; outline: none; color: #ececec; font-size: 16px; }
+    #sendBtn { background: #19c37d; border: none; color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px; }
     #sendBtn:disabled { background: #565869; cursor: not-allowed; }
 </style>
 </head>
 <body>
 
 <div id="sidebar">
-    <h2>🎓 我的 AI 助手</h2>
-    <button id="newChatBtn" onclick="newChat()">+ 新對話</button>
+    <div class="sidebar-item" onclick="newChat()">➕ 新對話</div>
+    <div class="sidebar-item">🔍 搜尋</div>
+    <div class="sidebar-item">📁 檔案庫</div>
 </div>
 
 <div id="main">
     <div id="chat"></div>
     <footer>
         <div id="inputWrap">
-            <input type="text" id="userInput" placeholder="傳送訊息給 AI 助手...">
-            <button id="sendBtn" onclick="sendMessage()">送出</button>
+            <input type="text" id="userInput" placeholder="想問什麼都可以">
+            <button id="sendBtn" onclick="sendMessage()">➤</button>
         </div>
     </footer>
 </div>
