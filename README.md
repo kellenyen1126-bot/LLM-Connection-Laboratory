@@ -42,7 +42,7 @@
 </div>
 
 <script>
-    const API_KEY = "PASTE_HERE";
+    const API_KEY = "sk-...(your key)...";
     const chatBox = document.getElementById("chat");
     const input = document.getElementById("userInput");
     const sendBtn = document.getElementById("sendBtn");
